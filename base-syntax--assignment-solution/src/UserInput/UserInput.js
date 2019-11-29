@@ -13,3 +13,12 @@ const userInput = (props) => {
 };
 
 export default userInput;
+
+
+/* 
+ onChange={props.changed} 
+    - no momento em que esse evento ocorre, ele passará automaticamente o objeto de evento
+    para nosso handler de eventos.
+
+
+*/
