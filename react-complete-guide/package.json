@@ -3,14 +3,30 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "dotenv": "^8.2.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-scripts": "1.1.5"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "cross-env PORT=4200 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.0",
+    "eslint-plugin-react-hooks": "^2.3.0"
+  },
+  "eslintConfig": {
+    "extends": "react-app",
+    "plugins": [
+      "react-hooks"
+    ],
+    "rules": {
+      "react-hooks/rules-of-hooks": "error", 
+      "react-hooks/exhaustive-deps": "warn"
+    }
   }
 }
