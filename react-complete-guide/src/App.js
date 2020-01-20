@@ -6,6 +6,7 @@ import Clock from './Clock/Clock'
 import Toggle from './Toogle/Toggle'
 import WarningBanner from './WarningBanner/WarningBanner'
 import Calculator from './Calculator/Calculator'
+import ThinkReactStatic from './ThinkReactStatic/ThinkReactStatic'
 
 class App extends Component {
 
@@ -119,6 +120,8 @@ class App extends Component {
     return (
       <div className="App">
 
+        <ThinkReactStatic />
+
         <Clock>jkasdjkasd </Clock>
 
         <h1> Hi, I'm React App </h1>
@@ -153,7 +156,6 @@ class App extends Component {
           onClick={ this.togglePersonsHandler }
         > Toggle </button>
 
-        
         {persons}
 
       </div>
