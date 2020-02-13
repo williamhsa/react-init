@@ -100,6 +100,7 @@ class App extends Component {
     let persons = null
 
     if (this.state.showPersons) {
+      console.log("TCL: App -> render -> this.state.persons", this.state.persons)
       persons = (
         <div>
           {
