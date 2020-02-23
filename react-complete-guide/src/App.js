@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import './App.css'
-import Person from './Person/Person'
-import Welcome from './Welcome/Welcome'
+import Person from './components/Persons/Persons/Person'
+import Welcome from './components/Welcome/Welcome'
 import Clock from './Clock/Clock'
-import Toggle from './Toogle/Toggle'
-import WarningBanner from './WarningBanner/WarningBanner'
+import Toggle from './components/Toogle/Toggle'
+import WarningBanner from './components/WarningBanner/WarningBanner'
 import Calculator from './Calculator/Calculator'
 import ThinkReactStatic from './ThinkReactStatic/ThinkReactStatic'
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary'
 
 class App extends Component {
 
@@ -50,7 +51,8 @@ class App extends Component {
     //  ou desse jeito que é uma abordagem menos moderna
     // const person = Object.assign({}, this.state.persons[personIndex])
 
-    person.name = event.target.name
+    person.name = event.target.value
+    console.log("TCL: App -> nameChangedHandler -> event.target.name", event.target.name)
 
     const persons = [...this.state.persons]
     persons[personIndex] = person
@@ -105,13 +107,14 @@ class App extends Component {
         <div>
           {
             this.state.persons.map( (person, index) => {
-              return <Person 
-                name={person.name} 
-                age={person.age} 
-                key={person.id}
-                click={() => this.deletePersonHandler(index)}
-                changed={(event) => this.nameChangedHandler(event, person.id)}
-              />
+              return <ErrorBoundary key={person.id}>
+                <Person 
+                  name={person.name} 
+                  age={person.age} 
+                  click={() => this.deletePersonHandler(index)}
+                  changed={(event) => this.nameChangedHandler(event, person.id)}
+                />
+              </ErrorBoundary>
             })
           }
         </div>
