@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import FormattedDate from '../components/FormattedDate/FormattedDate'
+import FormattedDate from '../FormattedDate/FormattedDate'
 
 class Clock extends Component {
 

@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import './App.css'
-import Person from './components/Persons/Persons/Person'
-import Welcome from './components/Welcome/Welcome'
-import Clock from './Clock/Clock'
-import Toggle from './components/Toogle/Toggle'
-import WarningBanner from './components/WarningBanner/WarningBanner'
-import Calculator from './Calculator/Calculator'
-import ThinkReactStatic from './ThinkReactStatic/ThinkReactStatic'
-import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary'
+import Person from '../components/Persons/Person/Person'
+import Welcome from '../components/Welcome/Welcome'
+import Clock from '../components/Clock/Clock'
+import Toggle from '../components/Toogle/Toggle'
+import WarningBanner from '../components/WarningBanner/WarningBanner'
+import Calculator from '../components/Calculator/Calculator'
+import ThinkReactStatic from '../components/ThinkReactStatic/ThinkReactStatic'
+import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary'
 
 class App extends Component {
 
