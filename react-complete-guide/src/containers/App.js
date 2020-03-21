@@ -145,7 +145,7 @@ class App extends Component {
         <Calculator />
         <br></br>
 
-        <Cockpit 
+        <Cockpit
           title={this.props.appTitle}
           toggle={this.togglePersonsHandler} 
           persons={this.state.persons}
