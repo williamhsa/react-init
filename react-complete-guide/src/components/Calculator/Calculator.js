@@ -60,7 +60,7 @@ class Calculator extends Component {
     const celsius = scale === 'f' ? this.tryConvert(temperature, this.toCelsius) : temperature
     const fahrenheit = scale === 'c' ? this.tryConvert(temperature, this.toFahrenheit) : temperature
 
-    console.log('state', this.state)
+    // console.log('state', this.state)
 
     return (
       <div>

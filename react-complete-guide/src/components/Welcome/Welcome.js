@@ -6,11 +6,11 @@ const Welcome = (props) => {
 
   // Similar a componentDidMount e componentDidUpdate:
   useEffect(() => {
-    console.log('component iniciou e falou')
+    // console.log('component iniciou e falou')
     // Atualiza o título do documento utilizando a API do navegador
     document.title = `You clicked ${count} times`;
 
-    console.log('depois do click')
+    // console.log('depois do click')
 
   });
 

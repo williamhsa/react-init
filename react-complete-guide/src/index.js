@@ -8,5 +8,5 @@ import registerServiceWorker from './registerServiceWorker'
 // registerServiceWorker();
 
 // App é o componente raiz
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render(<App appTitle="Person Manager"/>, document.getElementById('root'))
 registerServiceWorker()

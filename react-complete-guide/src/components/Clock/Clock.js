@@ -15,7 +15,7 @@ class Clock extends Component {
       city: 'Campinas'
     })
 
-    console.log('states', this.state)
+    // console.log('states', this.state)
 
     this.timerID = setInterval(
       () => this.tick(),

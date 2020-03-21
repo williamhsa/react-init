@@ -1,20 +1,21 @@
 import React, { Component } from 'react'
 import './App.css'
-import Person from '../components/Persons/Person/Person'
 import Welcome from '../components/Welcome/Welcome'
 import Clock from '../components/Clock/Clock'
 import Toggle from '../components/Toogle/Toggle'
 import WarningBanner from '../components/WarningBanner/WarningBanner'
 import Calculator from '../components/Calculator/Calculator'
 import ThinkReactStatic from '../components/ThinkReactStatic/ThinkReactStatic'
-import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary'
+// import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary'
+import Persons from '../components/Persons/Persons'
+import Cockpit from '../components/Cockpit/Cockpit'
 
 class App extends Component {
 
-  // constructor(props) {
-  //   super(props)
-  //   this.state = { showWarning: true}
-  // }
+  constructor(props) {
+    super(props)
+    console.log('[app.js] constructor');
+  }
 
   state = {
     persons: [
@@ -26,6 +27,15 @@ class App extends Component {
     showPersons: false,
     showWarning: true
   }
+
+  static getDerivedStateFromProps(props, state) {
+    console.log('[app.js] getDerivedStatFromProps', props)
+    return state;
+  }
+
+  componentDidMount() {
+    console.log('[app.js] componentDidMount');
+  };
 
   deletePersonHandler = (personIndex) => {
     //  má pratica:
@@ -52,7 +62,7 @@ class App extends Component {
     // const person = Object.assign({}, this.state.persons[personIndex])
 
     person.name = event.target.value
-    console.log("TCL: App -> nameChangedHandler -> event.target.name", event.target.name)
+    // console.log("TCL: App -> nameChangedHandler -> event.target.name", event.target.name)
 
     const persons = [...this.state.persons]
     persons[personIndex] = person
@@ -63,7 +73,7 @@ class App extends Component {
   togglePersonsHandler = () => {
     const doesShow = this.state.showPersons
     this.setState({ showPersons: !doesShow })
-    console.log('ae', this.state)
+    // console.log('ae', this.state)
   }
 
   formatName = (user) => {
@@ -72,7 +82,7 @@ class App extends Component {
 
   clickHandler = (e) => {
     e.preventDefault()
-    console.log('O link foi clicado!')
+    // console.log('O link foi clicado!')
   }
 
   handleToggleWarning = () => {
@@ -84,13 +94,6 @@ class App extends Component {
   render() {
 
     console.log('inside render', this.state)
-    const style = {
-      backgroundColor: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer'
-    }
 
     const name = 'William'
 
@@ -102,35 +105,21 @@ class App extends Component {
     let persons = null
 
     if (this.state.showPersons) {
-      console.log("TCL: App -> render -> this.state.persons", this.state.persons)
-      persons = (
-        <div>
-          {
-            this.state.persons.map( (person, index) => {
-              return <ErrorBoundary key={person.id}>
-                <Person 
-                  name={person.name} 
-                  age={person.age} 
-                  click={() => this.deletePersonHandler(index)}
-                  changed={(event) => this.nameChangedHandler(event, person.id)}
-                />
-              </ErrorBoundary>
-            })
-          }
-        </div>
-      )
+      persons = <Persons 
+            persons={this.state.persons} 
+            clicked={this.deletePersonHandler}
+            changed={this.nameChangedHandler} 
+          />
     }
 
     return (
       <div className="App">
-
+        <h1> Hi, I'm React App </h1>
+        <h2> learning about me </h2>
         <ThinkReactStatic />
 
         <Clock>jkasdjkasd </Clock>
-
-        <h1> Hi, I'm React App </h1>
-        <h2> learning about me </h2>
-
+        
         <div>
           <WarningBanner warn={this.state.showWarning}></WarningBanner>
           <button onClick={this.handleToggleWarning}>
@@ -154,12 +143,11 @@ class App extends Component {
         <Calculator />
         <br></br>
 
-        <button
-          style={style} 
-          // onClick={ () => this.switchNameHandler('Jose') }
-          onClick={ this.togglePersonsHandler }
-        > Toggle </button>
-
+        <Cockpit 
+          title={this.props.appTitle}
+          toggle={this.togglePersonsHandler} 
+          persons={this.state.persons}
+          showPersons={this.state.showPersons}/>
         {persons}
 
       </div>
@@ -198,7 +186,18 @@ para class (componentes) que extendão 'Component'. Ou seja, em componentes Reac
     React hooks é tudo sobre funções de uso, com o useState()
 
 - Adding Two Way Binding
-
+ {
+  this.state.persons.map( (person, index) => {
+    return <ErrorBoundary key={person.id}>
+      <Person 
+        name={person.name} 
+        age={person.age} 
+        click={() => this.deletePersonHandler(index)}
+        changed={(event) => this.nameChangedHandler(event, person.id)}
+      />
+    </ErrorBoundary>
+  })
+} 
 
 
 

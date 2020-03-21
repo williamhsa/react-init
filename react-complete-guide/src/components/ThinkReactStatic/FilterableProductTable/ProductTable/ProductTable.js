@@ -41,7 +41,7 @@ class ProductTable extends React.Component {
       margin: "auto"
     }
 
-    console.log('dvidiv', rows)
+    // console.log('dvidiv', rows)
 
     return (
       <table style={styleTable}>

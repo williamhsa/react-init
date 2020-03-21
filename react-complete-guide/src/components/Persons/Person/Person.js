@@ -3,11 +3,11 @@ import './Person.css'
 
 const Person = (props) => {
   // return <p> I'm a Person and I am {Math.floor(Math.random() * 30)} years old!</p>
-  const rnd = Math.random()
+  // const rnd = Math.random()
 
-  if (rnd > 0.7) {
-    throw new Error('Something went wrong')
-  }
+  // if (rnd > 0.7) {
+  //   throw new Error('Something went wrong')
+  // }
 
   return (
    <div className="Person">
