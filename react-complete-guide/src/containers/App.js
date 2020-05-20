@@ -25,17 +25,31 @@ class App extends Component {
     ],
     otherState: 'some other value',
     showPersons: false,
-    showWarning: true
+    showWarning: true,
+    showCockpit: true,
   }
 
   static getDerivedStateFromProps(props, state) {
-    console.log('[app.js] getDerivedStatFromProps', props)
+    console.log('[App.js] getDerivedStateFromProps', props);
     return state;
   }
 
+  // componentWillMount() {
+  //   console.log('[App.js] componentWillMount');
+  // }
+
   componentDidMount() {
-    console.log('[app.js] componentDidMount');
-  };
+    console.log('[App.js] componentDidMount');
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('[App.js] shouldComponentUpdate');
+    return true;
+  }
+
+  componentDidUpdate() {
+    console.log('[App.js] componentDidUpdate');
+  }
 
   deletePersonHandler = (personIndex) => {
     //  má pratica:
@@ -91,11 +105,12 @@ class App extends Component {
     }))
   }
 
+  handleRemoveCockpit = () => {
+
+  };
+
   render() {
-    console.log('1 commit');
-    console.log('2 commit');
-    console.log('3 commit');
-    console.log('inside render', this.state)
+    console.log('[App.js] render');
 
     const name = 'William'
 
@@ -144,12 +159,15 @@ class App extends Component {
         
         <Calculator />
         <br></br>
-
-        <Cockpit
-          title={this.props.appTitle}
-          toggle={this.togglePersonsHandler} 
-          persons={this.state.persons}
-          showPersons={this.state.showPersons}/>
+        <button onClick={() => { this.setState({showCockpit: false})}}> Remove Cockpit </button>
+        {this.state.showCockpit ? (
+          <Cockpit
+            title={this.props.appTitle}
+            toggle={this.togglePersonsHandler}
+            persons={this.state.persons}
+            showPersons={this.state.showPersons}
+          />
+        ) : null}
         {persons}
 
       </div>
@@ -157,7 +175,7 @@ class App extends Component {
   }
 }
 
-export default App
+export default App;
 
 
 /* 
