@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import './Person.css'
+import Auxiliary from '../../../hoc/Auxiliary';
+import AuthContext from '../../../context/auth-context';
+
 
 class Person extends Component {
   // return <p> I'm a Person and I am {Math.floor(Math.random() * 30)} years old!</p>
@@ -11,12 +14,17 @@ class Person extends Component {
   render() {
     console.log('component filhooo');
     return (
-     <div className="Person">
+     // <div className="Person">
+      <Auxiliary>
+        <AuthContext.Consumer>
+          {(context) => context.authenticated ? <p>Authenticated!</p> : <p>Please Log In!</p>}
+        </AuthContext.Consumer>
         <p onClick={ this.props.click } > I'm a { this.props.name } and I am { this.props.age } years old!</p>
         <p> { this.props.children } </p>
         <input type="text" onChange={ this.props.changed } value={ this.props.name } />
         <button>Ok</button>
-      </div>
+      </Auxiliary>
+      // </div>
     );
   }
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './App.css'
+import classes from './App.css';
 import Welcome from '../components/Welcome/Welcome'
 import Clock from '../components/Clock/Clock'
 import Toggle from '../components/Toogle/Toggle'
@@ -9,6 +9,8 @@ import ThinkReactStatic from '../components/ThinkReactStatic/ThinkReactStatic'
 // import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary'
 import Persons from '../components/Persons/Persons'
 import Cockpit from '../components/Cockpit/Cockpit'
+import withClass from "../hoc/withClass";
+import AuthContext from '../context/auth-context';
 
 class App extends Component {
 
@@ -27,6 +29,7 @@ class App extends Component {
     showPersons: false,
     showWarning: true,
     showCockpit: true,
+    authenticated: false,
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -106,8 +109,11 @@ class App extends Component {
   }
 
   handleRemoveCockpit = () => {
-
   };
+
+  loginHandler = () => {
+    this.setState({authenticated: true});
+  }
 
   render() {
     console.log('[App.js] render');
@@ -160,22 +166,28 @@ class App extends Component {
         <Calculator />
         <br></br>
         <button onClick={() => { this.setState({showCockpit: false})}}> Remove Cockpit </button>
-        {this.state.showCockpit ? (
-          <Cockpit
-            title={this.props.appTitle}
-            toggle={this.togglePersonsHandler}
-            persons={this.state.persons}
-            showPersons={this.state.showPersons}
-          />
-        ) : null}
-        {persons}
+        <AuthContext.Provider
+          value={{
+            authenticated: this.state.authenticated,
+            login: this.loginHandler
+          }}>
+          {this.state.showCockpit ? (
+            <Cockpit
+              title={this.props.appTitle}
+              toggle={this.togglePersonsHandler}
+              persons={this.state.persons}
+              showPersons={this.state.showPersons}
+            />
+          ) : null}
+          {persons}
+        </AuthContext.Provider>
 
       </div>
     )
   }
 }
 
-export default App;
+export default withClass(App, classes.App);
 
 
 /* 
